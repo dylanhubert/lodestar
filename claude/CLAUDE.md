@@ -18,4 +18,4 @@ Ne suppose jamais un langage par défaut. Détecte-le à partir des manifestes e
 
 ## Le socle
 
-Mes standards transverses vivent dans `~/dev/claude-setup`. Pour brancher un projet dessus : `/brancher`. Pour diagnostiquer une dérive : `/check`.
+Mes standards transverses vivent dans `~/dev/claude-setup`. Commandes : `/brancher` (mettre un projet aux normes), `/check` (diagnostiquer une dérive), `/revue` (review du code en profondeur), `/sans-ia` (retirer les marques d'IA). Agents spécialisés disponibles : `code-reviewer`, `security-auditor`, `test-writer`.

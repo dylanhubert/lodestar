@@ -28,7 +28,7 @@ L'outil sait quoi vérifier mécaniquement et quoi confier au raisonnement. C'es
 ./install.sh
 ```
 
-Installe les commandes `/brancher` et `/check` et les règles globales dans `~/.claude`. Dépendances : `gh` (GitHub), `lefthook` (hooks Git).
+Installe les commandes (`/brancher`, `/check`, `/revue`, `/sans-ia`), les agents et les règles globales dans `~/.claude`. Dépendances : `gh` (GitHub), `lefthook` (hooks Git), `gitleaks` (scan de secrets, optionnel).
 
 ## Utiliser
 
@@ -39,6 +39,8 @@ Dans n'importe quel projet :
 - `/revue` — comprend le code en profondeur, puis review, corrige, optimise, restructure.
 - `/sans-ia` — retire les marques d'IA (commits, fichiers, contenu) d'un projet existant.
 
+Et trois agents spécialisés, que `/revue` peut mobiliser ou que tu invoques directement : `code-reviewer`, `security-auditor`, `test-writer`.
+
 ## Nouvelle machine
 
 Le repo poussé sur GitHub est la sauvegarde. Sur une machine neuve, tout se rejoue :
@@ -48,11 +50,13 @@ git clone <url-github> ~/dev/claude-setup
 ~/dev/claude-setup/install.sh
 ```
 
-`install.sh` recrée les symlinks et réapplique le réglage Git anti-signature. Rien n'est perdu d'une machine à l'autre. Garde le clone à `~/dev/claude-setup` (chemin référencé par les commandes).
+`install.sh` recrée les symlinks et réapplique le réglage Claude Code anti-signature (`includeCoAuthoredBy`). Rien n'est perdu d'une machine à l'autre. Garde le clone à `~/dev/claude-setup` (chemin référencé par les commandes).
 
 ## Structure
 
 - `docs/` — règles d'or, voix humaine, conventions Git, modèle d'ADR.
-- `profiles/` — un dossier par archétype de projet.
-- `scripts/` — détection des langages et audit Git.
-- `claude/` — commandes et règles globales Claude Code.
+- `profiles/` — un dossier par archétype (`api`, `web`, `cli`, `lib`).
+- `templates/` — les fichiers que `/brancher` copie dans tes projets (configs lint, CI, issues, labels).
+- `scripts/` — détection des langages, audit Git, scan des marques d'IA.
+- `claude/` — commandes, agents et règles globales Claude Code.
+- `VERSION` — version du socle, inscrite dans le `.standards.yml` de chaque projet branché.

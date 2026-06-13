@@ -12,6 +12,15 @@ Tu es l'utilitaire `claude-setup`. Objectif : brancher le socle de standards sur
 - Respecte le fichier `.standards.yml` du projet s'il existe : ne repropose pas ce qui y est marqué comme exception acceptée ou règle désactivée.
 - Toute production respecte la voix humaine (`~/dev/claude-setup/docs/voix.md`) : aucune trace d'IA, dans le code comme dans les commits.
 - Le langage n'est jamais supposé : on le détecte.
+- Périmètre : `/brancher` traite la conformité **externe** (fichiers, Git, CI, profil). Pour la qualité **interne** du code (bugs, sécu, archi), renvoie vers `/revue`.
+
+## Étape 0 — Pré-requis
+
+Vérifie le terrain avant d'agir et dis-moi quoi faire en cas de manque :
+
+- **Dépôt git** : si on n'est pas dans un repo (`git rev-parse` échoue), propose `git init` avant de continuer.
+- **`gh` authentifié** : `gh auth status`. Si non connecté, indique `gh auth login` ; n'essaie pas de créer ou pousser un repo.
+- **`lefthook` présent** : sinon signale `brew install lefthook` ; n'installe pas de hooks sans le binaire.
 
 ## Étape 1 — Scanner
 
@@ -42,7 +51,7 @@ Compare l'état réel aux **règles d'or** (`~/dev/claude-setup/docs/regles-dor.
 
 Sur une branche `chore/claude-setup` :
 
-- applique les correctifs additifs (reprends les configs depuis `~/dev/claude-setup`, installe les hooks lefthook) ;
+- applique les correctifs additifs en copiant depuis `~/dev/claude-setup/templates/` (n'y prends que ce qui correspond aux langages détectés), puis installe les hooks (`lefthook install`) ;
 - applique uniquement les changements structurels que j'ai validés ;
 - ne configure que les outils des langages réellement présents.
 
@@ -52,6 +61,6 @@ Avec `gh`, pose une base saine si elle manque : labels cohérents, un milestone 
 
 ## Étape 7 — Mémoriser
 
-Écris ou actualise `.standards.yml` à la racine du projet : archétype retenu, date, langages, règles appliquées, exceptions que j'ai acceptées. C'est ce qui rend les passages suivants idempotents.
+Écris ou actualise `.standards.yml` à la racine du projet, au format de `~/dev/claude-setup/templates/standards.example.yml` : profil retenu, version du socle (`~/dev/claude-setup/VERSION`), date, langages, règles appliquées, exceptions que j'ai acceptées. C'est ce qui rend les passages suivants idempotents.
 
 Termine par un récapitulatif : ce qui a été fait, ce qui reste à valider, et la commande exacte pour pousser.

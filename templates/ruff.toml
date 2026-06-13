@@ -1,0 +1,9 @@
+# Lint + format Python. Requiert ruff.
+line-length = 100
+target-version = "py311"
+
+[lint]
+select = ["E", "F", "I", "UP", "B", "SIM"]
+
+[format]
+quote-style = "double"

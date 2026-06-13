@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Installe les commandes et les règles globales de claude-setup dans ~/.claude.
+# Installe les commandes, les agents et les règles globales de claude-setup dans ~/.claude.
 # Idempotent : relançable sans risque.
 set -euo pipefail
 
@@ -10,51 +10,82 @@ CANONICAL="$HOME/dev/claude-setup"
 if [ "$REPO" != "$CANONICAL" ]; then
   echo "! Ce repo est à $REPO, pas à $CANONICAL."
   echo "  Les commandes référencent le chemin canonique. Clone-le à $CANONICAL pour éviter des liens cassés."
+  echo "  Et ne déplace pas le repo après l'install : si tu le bouges, relance install.sh."
 fi
 
-mkdir -p "$CLAUDE_DIR/commands"
+mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/agents"
 
-# Commandes : symlink vers le repo, qui reste la source versionnée.
+# Pose un symlink sans jamais écraser un vrai fichier existant.
+link() {  # link <source> <destination> <label>
+  local src="$1" dest="$2" label="$3"
+  if [ -e "$dest" ] && [ ! -L "$dest" ]; then
+    echo "! $dest existe déjà (vrai fichier) — non remplacé."
+    return
+  fi
+  ln -sf "$src" "$dest"
+  echo "✓ $label"
+}
+
+commands=""
+
+# Commandes
 for cmd in "$REPO"/claude/commands/*.md; do
-  name="$(basename "$cmd")"
-  ln -sf "$cmd" "$CLAUDE_DIR/commands/$name"
-  echo "✓ commande installée : /$(basename "$name" .md)"
+  [ -e "$cmd" ] || continue
+  base="$(basename "$cmd" .md)"
+  link "$cmd" "$CLAUDE_DIR/commands/$(basename "$cmd")" "commande : /$base"
+  commands="$commands /$base"
 done
 
-# Règles globales.
-if [ -e "$CLAUDE_DIR/CLAUDE.md" ] && [ ! -L "$CLAUDE_DIR/CLAUDE.md" ]; then
-  echo "! ~/.claude/CLAUDE.md existe déjà (vrai fichier). Je ne l'écrase pas."
-  echo "  Reporte le contenu de claude/CLAUDE.md à la main, ou supprime le fichier puis relance."
-else
-  ln -sf "$REPO/claude/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
-  echo "✓ règles globales installées : ~/.claude/CLAUDE.md"
-fi
+# Agents
+for ag in "$REPO"/claude/agents/*.md; do
+  [ -e "$ag" ] || continue
+  link "$ag" "$CLAUDE_DIR/agents/$(basename "$ag")" "agent : $(basename "$ag" .md)"
+done
 
-# Réglage Git : pas de signature IA dans les commits. Réappliqué sur chaque machine.
+# Règles globales
+link "$REPO/claude/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md" "règles globales : ~/.claude/CLAUDE.md"
+
+# Réglage Claude Code : pas de signature IA dans les commits. Réappliqué sur chaque machine.
 if command -v python3 >/dev/null; then
   python3 - "$CLAUDE_DIR/settings.json" <<'PY'
-import json, os, sys
+import json, os, sys, tempfile
 p = sys.argv[1]
-data = {}
 if os.path.exists(p):
     try:
-        data = json.load(open(p))
+        with open(p) as fh:
+            data = json.load(fh)
     except Exception:
-        data = {}
+        print("! settings.json existe mais est illisible (JSON invalide) — je n'y touche pas.")
+        print('  Ajoute "includeCoAuthoredBy": false toi-même, ou corrige le fichier puis relance.')
+        sys.exit(0)
+    if not isinstance(data, dict):
+        print("! settings.json n'est pas un objet JSON — je n'y touche pas.")
+        sys.exit(0)
+else:
+    data = {}
 if data.get("includeCoAuthoredBy") is not False:
     data["includeCoAuthoredBy"] = False
-    with open(p, "w") as f:
+    d = os.path.dirname(p) or "."
+    fd, tmp = tempfile.mkstemp(dir=d, suffix=".tmp")
+    with os.fdopen(fd, "w") as f:
         json.dump(data, f, indent=2)
         f.write("\n")
+    os.replace(tmp, p)
     print("✓ settings.json : includeCoAuthoredBy = false")
 else:
     print("✓ settings.json : déjà sans signature IA")
 PY
+else
+  echo "! python3 absent — settings.json NON configuré."
+  echo '  Ajoute "includeCoAuthoredBy": false dans ~/.claude/settings.json à la main,'
+  echo "  sinon les commits peuvent porter une signature IA."
 fi
 
-# Dépendances.
+# Dépendances
 command -v gh >/dev/null       || echo "! gh absent (brew install gh) — requis pour GitHub"
 command -v lefthook >/dev/null || echo "! lefthook absent (brew install lefthook) — requis pour les hooks"
+command -v gitleaks >/dev/null || echo "! gitleaks absent (brew install gitleaks) — scan de secrets plus poussé (optionnel)"
 
 echo
-echo "Terminé. Recharge Claude Code pour voir /brancher et /check."
+echo "Terminé. Commandes :${commands}."
+echo "Recharge Claude Code pour les voir, ainsi que les agents."

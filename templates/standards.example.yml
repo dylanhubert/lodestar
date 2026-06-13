@@ -1,0 +1,17 @@
+# Marqueur déposé à la racine d'un projet branché sur le socle (nommé .standards.yml).
+# Committé avec le projet : c'est lui qui rend /brancher idempotent.
+profil: api            # api | web | cli | lib | (autre archétype)
+socle_version: 1.0.0   # version du socle au moment du branchement
+date: 2026-06-14
+langages:
+  - python
+  - javascript/typescript
+regles_appliquees:
+  - editorconfig
+  - lefthook
+  - commitlint
+  - ci-qualite
+exceptions:            # ce que j'ai volontairement refusé (ne sera plus reproposé)
+  - regle: structure-tests
+    raison: les tests vivent à côté des sources dans ce projet
+regles_desactivees: [] # règles d'or désactivées pour ce projet précis
