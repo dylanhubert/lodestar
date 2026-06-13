@@ -18,4 +18,8 @@ Ne suppose jamais un langage par défaut. Détecte-le à partir des manifestes e
 
 ## Le socle
 
-Mes standards transverses vivent dans `~/dev/claude-setup`. Commandes : `/brancher` (mettre un projet aux normes), `/check` (diagnostiquer une dérive), `/revue` (review du code en profondeur), `/sans-ia` (retirer les marques d'IA). Agents spécialisés disponibles : `code-reviewer`, `security-auditor`, `test-writer`.
+Mes standards transverses vivent dans `~/dev/claude-setup`. Commandes : `/brancher` (mettre un projet aux normes), `/check` (diagnostiquer une dérive), `/revue` (review du code en profondeur), `/sans-ia` (retirer les marques d'IA), `/mcp` (brancher un service externe par projet). Agents spécialisés disponibles : `code-reviewer`, `security-auditor`, `test-writer`.
+
+## MCP par projet
+
+Un service externe (Supabase…) se branche **par projet**, jamais pour tout le compte : un `.mcp.json` à la racine (committé, avec des variables `${...}`), et le token dans `.claude/settings.local.json` (ignoré par Git). Jamais de secret dans un fichier committé. Détails : `~/dev/claude-setup/docs/mcp.md`. Pose : `/mcp`.

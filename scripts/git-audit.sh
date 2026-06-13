@@ -52,7 +52,7 @@ if [ -f .gitignore ]; then ok ".gitignore présent"; else warn ".gitignore manqu
 # Fichiers sensibles suivis par git ? (on ignore les templates .example/.sample et les clés publiques .pub)
 suspects="$(git ls-files 2>/dev/null \
   | grep -ivE '\.(example|sample|dist|template)$|\.pub$' \
-  | grep -iE '(^|/)\.env($|\.)|(^|/)id_rsa$|\.pem$|\.p12$|\.key$|(^|/)credentials$' || true)"
+  | grep -iE '(^|/)\.env($|\.)|(^|/)id_rsa$|\.pem$|\.p12$|\.key$|(^|/)credentials$|(^|/)settings\.local\.json$' || true)"
 if [ -n "$suspects" ]; then
   warn "Fichiers sensibles suivis par git (à retirer du suivi) :"
   echo "$suspects" | sed 's/^/      /'

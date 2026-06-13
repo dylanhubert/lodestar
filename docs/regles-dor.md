@@ -12,3 +12,4 @@ Les invariants. Ils s'appliquent à **tous** les projets, quel que soit le langa
 8. **Les décisions d'archi sont tracées** en ADR (`docs/adr/`).
 9. **Voix humaine partout** (voir `voix.md`).
 10. **Chaque projet déclare son profil** dans `.standards.yml`.
+11. **Services externes (MCP) branchés par projet** : `.mcp.json` committé avec des variables, token dans `.claude/settings.local.json` ignoré (voir `mcp.md`).

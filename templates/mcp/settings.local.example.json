@@ -1,0 +1,6 @@
+{
+  "env": {
+    "SUPABASE_PROJECT_REF": "remplace-par-le-project-ref",
+    "SUPABASE_ACCESS_TOKEN": "remplace-par-le-token-sbp"
+  }
+}

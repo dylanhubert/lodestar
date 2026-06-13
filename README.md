@@ -38,6 +38,7 @@ Dans n'importe quel projet :
 - `/check` — diagnostique une dérive, sans rien modifier.
 - `/revue` — comprend le code en profondeur, puis review, corrige, optimise, restructure.
 - `/sans-ia` — retire les marques d'IA (commits, fichiers, contenu) d'un projet existant.
+- `/mcp` — branche un service externe (Supabase…) sur le projet, par projet, sans fuiter de secret.
 
 Et trois agents spécialisés, que `/revue` peut mobiliser ou que tu invoques directement : `code-reviewer`, `security-auditor`, `test-writer`.
 
@@ -54,9 +55,9 @@ git clone <url-github> ~/dev/claude-setup
 
 ## Structure
 
-- `docs/` — règles d'or, voix humaine, conventions Git, modèle d'ADR.
+- `docs/` — règles d'or, voix humaine, conventions Git, MCP par projet, modèle d'ADR.
 - `profiles/` — un dossier par archétype (`api`, `web`, `cli`, `lib`).
-- `templates/` — les fichiers que `/brancher` copie dans tes projets (configs lint, CI, issues, labels).
+- `templates/` — les fichiers que `/brancher` copie dans tes projets (configs lint, CI, issues, labels, MCP).
 - `scripts/` — détection des langages, audit Git, scan des marques d'IA.
 - `claude/` — commandes, agents et règles globales Claude Code.
 - `VERSION` — version du socle, inscrite dans le `.standards.yml` de chaque projet branché.

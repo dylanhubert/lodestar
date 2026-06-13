@@ -57,7 +57,7 @@ Sur une branche `chore/claude-setup` :
 
 ## Étape 6 — Gestion de projet (GitHub)
 
-Avec `gh`, pose une base saine si elle manque : labels cohérents, un milestone de départ, un template d'issue. Ne crée rien en double.
+Avec `gh`, pose une base saine si elle manque : labels cohérents, un milestone de départ, un template d'issue. Ne crée rien en double. Si le projet dépend d'un service externe (Supabase…), signale-moi de lancer `/mcp` pour le brancher par projet sans fuiter de secret.
 
 ## Étape 7 — Mémoriser
 
