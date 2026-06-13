@@ -46,6 +46,17 @@ else
   warn "Branche courante non suivie (pas d'upstream défini)"
 fi
 
+# Identité git de cet environnement : tes commits seront-ils bien à toi ?
+id_name="$(git config user.name 2>/dev/null || true)"
+id_email="$(git config user.email 2>/dev/null || true)"
+if [ -z "$id_name" ] || [ -z "$id_email" ]; then
+  warn "Identité git incomplète (name='$id_name' email='$id_email') — tes commits seront mal attribués"
+elif printf '%s' "$id_email" | grep -qiE '^(t@t\.t|test@|you@example|user@example|root@|.*@(localhost|example\.com))$'; then
+  warn "Identité git suspecte : $id_name <$id_email> (placeholder) — corrige-la avant de commiter"
+else
+  ok "Identité git : $id_name <$id_email>"
+fi
+
 # .gitignore présent ?
 if [ -f .gitignore ]; then ok ".gitignore présent"; else warn ".gitignore manquant"; fi
 

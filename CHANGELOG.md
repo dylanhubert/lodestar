@@ -2,6 +2,13 @@
 
 Les évolutions notables du socle. Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/), versionnage [semver](https://semver.org/lang/fr/).
 
+## [1.1.0] — 2026-06-14
+
+### Ajouts
+
+- `install.sh` impose l'identité git (`Dylan HUBERT <contact@dylan-hubert.fr>`) sur chaque environnement, pour que les commits soient toujours à mon nom, quel que soit l'outil utilisé.
+- `git-audit.sh` (donc `/check` et `/brancher`) alerte si l'identité git est absente ou est un placeholder (`t@t.t`…).
+
 ## [1.0.0] — 2026-06-14
 
 Première version stable.

@@ -83,6 +83,19 @@ else
   echo "  sinon les commits peuvent porter une signature IA."
 fi
 
+# Identité git : les commits doivent toujours être à mon nom, quel que soit l'environnement.
+want_name="Dylan HUBERT"
+want_email="contact@dylan-hubert.fr"
+cur_name="$(git config --global user.name || true)"
+cur_email="$(git config --global user.email || true)"
+if [ "$cur_name" != "$want_name" ] || [ "$cur_email" != "$want_email" ]; then
+  git config --global user.name "$want_name"
+  git config --global user.email "$want_email"
+  echo "✓ identité git imposée : $want_name <$want_email> (était : ${cur_name:-vide} <${cur_email:-vide}>)"
+else
+  echo "✓ identité git : $want_name <$want_email>"
+fi
+
 # Dépendances
 command -v gh >/dev/null       || echo "! gh absent (brew install gh) — requis pour GitHub"
 command -v lefthook >/dev/null || echo "! lefthook absent (brew install lefthook) — requis pour les hooks"
