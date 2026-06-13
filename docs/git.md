@@ -20,7 +20,8 @@ Tout projet a un `origin` sur GitHub. Pas de travail qui dort uniquement en loca
 ## Releases
 
 - Tags semver : `vMAJEUR.MINEUR.CORRECTIF`.
-- Changelog généré depuis les commits conventionnels.
+- Changelog (`CHANGELOG.md`) tenu à jour depuis les commits conventionnels.
+- L'agent `release-manager` propose le bump de version et rédige le changelog et les notes de release.
 
 ## Gestion de projet (GitHub)
 

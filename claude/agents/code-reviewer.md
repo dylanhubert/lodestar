@@ -1,6 +1,6 @@
 ---
 name: code-reviewer
-description: Spécialiste de la revue de code. À utiliser juste après avoir écrit ou modifié du code pour repérer bugs, problèmes de qualité, de lisibilité et de sécurité. Lecture seule, ne modifie rien.
+description: Spécialiste de la revue de code. À utiliser de façon proactive juste après avoir écrit ou modifié du code, pour repérer bugs, problèmes de qualité, de lisibilité et de sécurité. Lecture seule, ne modifie rien.
 tools: Read, Grep, Glob, Bash
 ---
 

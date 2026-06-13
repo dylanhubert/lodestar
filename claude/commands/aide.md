@@ -13,7 +13,7 @@ Affiche un mémo court et clair, sans blabla :
 - `/mcp` — branche un service externe (Supabase, GitHub…) par projet.
 - `/aide` — ce mémo.
 
-**Agents** : `code-reviewer`, `security-auditor`, `test-writer`.
+**Agents** : `code-reviewer`, `security-auditor`, `test-writer`, `release-manager`.
 
 **Rappel** : tout ça marche dans **Claude Code**, pas dans Claude Desktop. Si `/brancher` ne fait rien, tu es sûrement dans Desktop. Détail : `~/dev/claude-setup/docs/ou-ca-marche.md`.
 

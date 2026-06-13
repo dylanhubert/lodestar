@@ -1,6 +1,6 @@
 ---
 name: security-auditor
-description: Spécialiste sécurité. À utiliser pour auditer les modules sensibles (auth, paiement, données perso, uploads, accès base) à la recherche de vulnérabilités. Lecture seule, ne modifie rien.
+description: Spécialiste sécurité. À utiliser de façon proactive pour auditer les modules sensibles (auth, paiement, données perso, uploads, accès base) à la recherche de vulnérabilités. Lecture seule, ne modifie rien.
 tools: Read, Grep, Glob, Bash
 ---
 

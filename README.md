@@ -28,7 +28,7 @@ L'outil sait quoi vérifier mécaniquement et quoi confier au raisonnement. C'es
 ./install.sh
 ```
 
-Installe les commandes (`/brancher`, `/check`, `/revue`, `/sans-ia`), les agents et les règles globales dans `~/.claude`. Dépendances : `gh` (GitHub), `lefthook` (hooks Git), `gitleaks` (scan de secrets, optionnel).
+Installe les commandes, les agents et les règles globales dans `~/.claude` (la liste exacte des commandes s'affiche à la fin de l'install). Dépendances : `gh` (GitHub), `lefthook` (hooks Git), `gitleaks` (scan de secrets, optionnel).
 
 ## Utiliser
 
@@ -41,7 +41,7 @@ Dans n'importe quel projet :
 - `/mcp` — branche un service externe (Supabase, GitHub, Postgres…) sur le projet, par projet, sans fuiter de secret.
 - `/aide` — rappelle les commandes, les agents, et où ça marche (Claude Code vs Desktop).
 
-Et trois agents spécialisés, que `/revue` peut mobiliser ou que tu invoques directement : `code-reviewer`, `security-auditor`, `test-writer`.
+Et des agents spécialisés, que `/revue` peut mobiliser ou que tu invoques directement : `code-reviewer`, `security-auditor`, `test-writer`, `release-manager`.
 
 ## Nouvelle machine
 
@@ -56,9 +56,9 @@ git clone <url-github> ~/dev/claude-setup
 
 ## Structure
 
-- `docs/` — règles d'or, voix humaine, conventions Git, MCP par projet, Code vs Desktop, modèle d'ADR.
-- `profiles/` — un dossier par archétype (`api`, `web`, `cli`, `lib`).
+- `docs/` — règles d'or, voix humaine, conventions Git, MCP par projet, Code vs Desktop, ADR. Sommaire : `docs/README.md`.
+- `profiles/` — un dossier par archétype (`api`, `web`, `cli`, `lib`, `static`).
 - `templates/` — les fichiers que `/brancher` copie dans tes projets (configs lint, CI, issues, labels, MCP).
 - `scripts/` — détection des langages, audit Git, scan des marques d'IA.
 - `claude/` — commandes, agents et règles globales Claude Code.
-- `VERSION` — version du socle, inscrite dans le `.standards.yml` de chaque projet branché.
+- `CHANGELOG.md`, `VERSION` — l'historique et la version du socle, inscrite dans le `.standards.yml` de chaque projet branché.

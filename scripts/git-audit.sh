@@ -62,7 +62,7 @@ fi
 
 # Scan de contenu si gitleaks est présent (sinon on ne vérifie que les noms ci-dessus).
 if command -v gitleaks >/dev/null 2>&1; then
-  if gitleaks detect --no-banner --report-path /dev/null >/dev/null 2>&1; then
+  if gitleaks detect --no-banner >/dev/null 2>&1; then
     ok "gitleaks : aucun secret détecté"
   else
     warn "gitleaks a détecté des secrets potentiels — lance 'gitleaks detect --no-banner' pour le détail"

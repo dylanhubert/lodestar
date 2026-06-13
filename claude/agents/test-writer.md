@@ -1,6 +1,6 @@
 ---
 name: test-writer
-description: Spécialiste des tests. À utiliser après avoir implémenté une fonctionnalité ou avant un refactoring, pour écrire des tests et combler les trous de couverture.
+description: Spécialiste des tests. À utiliser de façon proactive après avoir implémenté une fonctionnalité ou avant un refactoring, pour écrire des tests et combler les trous de couverture.
 tools: Read, Grep, Glob, Bash, Write, Edit
 ---
 

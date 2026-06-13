@@ -4,7 +4,7 @@ Les invariants. Ils s'appliquent à **tous** les projets, quel que soit le langa
 
 1. **Tout projet a un remote GitHub** et y est poussé. Le local seul ne compte pas.
 2. **Le working tree est propre** avant de passer à autre chose : rien en suspens, rien d'oublié.
-3. **Commits conventionnels** (`feat:`, `fix:`, `refactor:`, `docs:`, `chore:`…), écrits en voix humaine.
+3. **Commits conventionnels** (types détaillés dans `git.md`), écrits en voix humaine.
 4. **Aucun secret dans le dépôt.** `.env`, clés, tokens : ignorés et jamais commités.
 5. **Un `.gitignore` adapté** au(x) langage(s) du projet.
 6. **Un README** qui dit quoi, pourquoi, et comment lancer.

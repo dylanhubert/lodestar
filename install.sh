@@ -16,11 +16,12 @@ fi
 mkdir -p "$CLAUDE_DIR/commands" "$CLAUDE_DIR/agents"
 
 # Pose un symlink sans jamais écraser un vrai fichier existant.
+# Retourne 0 si le lien est posé, 1 s'il a été refusé.
 link() {  # link <source> <destination> <label>
   local src="$1" dest="$2" label="$3"
   if [ -e "$dest" ] && [ ! -L "$dest" ]; then
     echo "! $dest existe déjà (vrai fichier) — non remplacé."
-    return
+    return 1
   fi
   ln -sf "$src" "$dest"
   echo "✓ $label"
@@ -32,18 +33,19 @@ commands=""
 for cmd in "$REPO"/claude/commands/*.md; do
   [ -e "$cmd" ] || continue
   base="$(basename "$cmd" .md)"
-  link "$cmd" "$CLAUDE_DIR/commands/$(basename "$cmd")" "commande : /$base"
-  commands="$commands /$base"
+  if link "$cmd" "$CLAUDE_DIR/commands/$(basename "$cmd")" "commande : /$base"; then
+    commands="$commands /$base"
+  fi
 done
 
 # Agents
 for ag in "$REPO"/claude/agents/*.md; do
   [ -e "$ag" ] || continue
-  link "$ag" "$CLAUDE_DIR/agents/$(basename "$ag")" "agent : $(basename "$ag" .md)"
+  link "$ag" "$CLAUDE_DIR/agents/$(basename "$ag")" "agent : $(basename "$ag" .md)" || true
 done
 
 # Règles globales
-link "$REPO/claude/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md" "règles globales : ~/.claude/CLAUDE.md"
+link "$REPO/claude/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md" "règles globales : ~/.claude/CLAUDE.md" || true
 
 # Réglage Claude Code : pas de signature IA dans les commits. Réappliqué sur chaque machine.
 if command -v python3 >/dev/null; then
