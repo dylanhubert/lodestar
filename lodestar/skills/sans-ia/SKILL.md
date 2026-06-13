@@ -8,7 +8,7 @@ Tu nettoies le projet courant de toute trace d'IA. Objectif : qu'il passe pour e
 
 ## 1. Scanner
 
-Lance `~/dev/claude-setup/scripts/scan-ia.sh`. Présente un rapport classé par nature :
+Lance `node "${CLAUDE_PLUGIN_ROOT}/scripts/scan-ia.js"`. Présente un rapport classé par nature :
 
 - **Fichiers** : `CLAUDE.md`, `.claude/`, `.cursor*`, configs d'outils IA versionnées.
 - **Contenu** : commentaires/docs mentionnant une IA (candidats à vérifier — un vrai prénom « Claude » est un faux positif).
@@ -21,7 +21,7 @@ Rappelle qu'au passage le futur est déjà couvert : `includeCoAuthoredBy:false`
 Avec mon accord :
 
 - retire ou déversionne les fichiers d'outils IA qui n'ont rien à faire dans le repo (et ajoute-les au `.gitignore` si besoin) ;
-- réécris en voix humaine (`~/dev/claude-setup/docs/voix.md`) les commentaires et docs qui sonnent IA, sans changer le comportement du code.
+- réécris en voix humaine (`${CLAUDE_PLUGIN_ROOT}/docs/voix.md`) les commentaires et docs qui sonnent IA, sans changer le comportement du code.
 
 ## 3. Historique git (sensible — confirmation explicite)
 

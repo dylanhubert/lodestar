@@ -2,6 +2,26 @@
 
 Les évolutions notables du socle. Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/), versionnage [semver](https://semver.org/lang/fr/).
 
+## [2.0.0] — 2026-06-14
+
+Refonte en **plugin Claude Code** (`lodestar`), installable par tout le monde, sur Windows et Mac.
+
+### Changements (cassants)
+
+- Distribué comme plugin via marketplace, au lieu d'une install par symlinks. Plus de chemin imposé : Claude gère l'emplacement (`${CLAUDE_PLUGIN_ROOT}`).
+- Scripts portés de bash vers **Node.js** : cross-platform, sans dépendance à bash.
+- Commandes converties en skills ; structure rangée sous `lodestar/`.
+- `install.sh`, `update.sh`, `config.local.sh` retirés — remplacés par `/plugin install` et la skill `/setup`.
+
+### Ajouts
+
+- `/setup` : configuration interactive (détection OS, outils, identité git, règles globales).
+- Le nom du produit : **Lodestar**, par Dylan HUBERT.
+
+### Migration
+
+- On installe désormais via `/plugin marketplace add` + `/plugin install lodestar@lodestar`, puis `/setup`.
+
 ## [1.2.0] — 2026-06-14
 
 ### Ajouts

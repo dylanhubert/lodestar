@@ -4,11 +4,11 @@ argument-hint: "[service, ex. supabase]"
 allowed-tools: Bash, Read, Write, Edit, Grep, Glob
 ---
 
-Tu branches un serveur MCP sur le projet courant, en portée **projet**, en gardant le secret hors de Git. Référence : `~/dev/claude-setup/docs/mcp.md`.
+Tu branches un serveur MCP sur le projet courant, en portée **projet**, en gardant le secret hors de Git. Référence : `${CLAUDE_PLUGIN_ROOT}/docs/mcp.md`.
 
 ## 1. Cibler le service
 
-Service demandé : $ARGUMENTS. Si vide, demande-moi lequel — ça dépend du projet, ce n'est pas forcément Supabase. Consulte `~/dev/claude-setup/templates/mcp/catalog.md` : si un modèle prêt existe (ex. `supabase.mcp.json`), pars de lui ; sinon construis l'entrée avec le bon patron (HTTP ou stdio, voir `_http.example.mcp.json` / `_stdio.example.mcp.json`), en vérifiant le nom de package, l'URL et les options sur le repo ou la doc **officielle** du serveur (ça bouge vite).
+Service demandé : $ARGUMENTS. Si vide, demande-moi lequel — ça dépend du projet, ce n'est pas forcément Supabase. Consulte `${CLAUDE_PLUGIN_ROOT}/templates/mcp/catalog.md` : si un modèle prêt existe (ex. `supabase.mcp.json`), pars de lui ; sinon construis l'entrée avec le bon patron (HTTP ou stdio, voir `_http.example.mcp.json` / `_stdio.example.mcp.json`), en vérifiant le nom de package, l'URL et les options sur le repo ou la doc **officielle** du serveur (ça bouge vite).
 
 ## 2. Écrire le `.mcp.json` (committé, SANS secret)
 

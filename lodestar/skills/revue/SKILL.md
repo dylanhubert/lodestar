@@ -10,7 +10,7 @@ Périmètre : `/revue` = qualité **interne** du code. La conformité **externe*
 
 ## 1. Comprendre
 
-Détecte les langages (`~/dev/claude-setup/scripts/detect.sh`), repère les points d'entrée, les modules, le flux de données. Donne-moi une carte courte : à quoi sert le projet, comment il est organisé, où sont les zones sensibles.
+Détecte les langages (`node "${CLAUDE_PLUGIN_ROOT}/scripts/detect.js"`), repère les points d'entrée, les modules, le flux de données. Donne-moi une carte courte : à quoi sert le projet, comment il est organisé, où sont les zones sensibles.
 
 ## 2. Revue
 
@@ -32,7 +32,7 @@ Sur une branche `chore/revue` :
 - applique d'abord les corrections sûres et à faible risque ;
 - présente les refactorings de structure en diff, je valide au cas par cas ;
 - ne change jamais un comportement attendu sans le signaler ;
-- tout code ou commentaire produit suit la voix humaine (`~/dev/claude-setup/docs/voix.md`).
+- tout code ou commentaire produit suit la voix humaine (`${CLAUDE_PLUGIN_ROOT}/docs/voix.md`).
 
 ## 4. Vérifier
 

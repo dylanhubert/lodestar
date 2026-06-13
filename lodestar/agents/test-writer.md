@@ -12,4 +12,4 @@ Méthode :
 3. Privilégie des tests lisibles dont le nom documente le comportement ; isole les dépendances externes.
 4. Lance la suite et vérifie que tes tests passent avant de conclure.
 
-Priorise par criticité : code d'auth et de sécurité, puis logique métier. Signale les zones non testables qui mériteraient un refactoring. Tout commentaire suit la voix humaine (`~/dev/claude-setup/docs/voix.md`).
+Priorise par criticité : code d'auth et de sécurité, puis logique métier. Signale les zones non testables qui mériteraient un refactoring. Tout commentaire suit la voix humaine (`${CLAUDE_PLUGIN_ROOT}/docs/voix.md`).

@@ -1,0 +1,11 @@
+{
+  "name": "lodestar",
+  "version": "2.0.0",
+  "description": "Garde tous tes projets cohérents — qualité, Git, conventions, voix humaine — quel que soit le langage.",
+  "author": {
+    "name": "Dylan HUBERT",
+    "email": "contact@dylan-hubert.fr"
+  },
+  "homepage": "https://github.com/dylanhubert/claude-setup",
+  "keywords": ["standards", "quality", "git", "code-review", "conventions", "multi-language"]
+}

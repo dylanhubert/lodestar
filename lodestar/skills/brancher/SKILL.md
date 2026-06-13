@@ -10,7 +10,7 @@ Tu es l'utilitaire `claude-setup`. Objectif : brancher le socle de standards sur
 
 - Ne casse jamais l'existant. Tout changement structurel se fait sur une branche `chore/claude-setup` et se propose, ne s'impose pas.
 - Respecte le fichier `.standards.yml` du projet s'il existe : ne repropose pas ce qui y est marqué comme exception acceptée ou règle désactivée.
-- Toute production respecte la voix humaine (`~/dev/claude-setup/docs/voix.md`) : aucune trace d'IA, dans le code comme dans les commits.
+- Toute production respecte la voix humaine (`${CLAUDE_PLUGIN_ROOT}/docs/voix.md`) : aucune trace d'IA, dans le code comme dans les commits.
 - Le langage n'est jamais supposé : on le détecte.
 - Périmètre : `/brancher` traite la conformité **externe** (fichiers, Git, CI, profil). Pour la qualité **interne** du code (bugs, sécu, archi), renvoie vers `/revue`.
 
@@ -24,15 +24,15 @@ Vérifie le terrain avant d'agir et dis-moi quoi faire en cas de manque :
 
 ## Étape 1 — Scanner
 
-Lance `~/dev/claude-setup/scripts/detect.sh`, puis explore l'arborescence réelle (Glob/Read). Résume : langages, archétype probable, ce qui est déjà en place.
+Lance `node "${CLAUDE_PLUGIN_ROOT}/scripts/detect.js"`, puis explore l'arborescence réelle (Glob/Read). Résume : langages, archétype probable, ce qui est déjà en place.
 
 ## Étape 2 — Classer
 
-Détermine l'archétype (service/api, application web, cli, lib, site statique…). En cas d'ambiguïté, demande-moi confirmation plutôt que de deviner. Charge le profil correspondant dans `~/dev/claude-setup/profiles/` s'il existe.
+Détermine l'archétype (service/api, application web, cli, lib, site statique…). En cas d'ambiguïté, demande-moi confirmation plutôt que de deviner. Charge le profil correspondant dans `${CLAUDE_PLUGIN_ROOT}/profiles/` s'il existe.
 
 ## Étape 3 — Audit Git
 
-Lance `~/dev/claude-setup/scripts/git-audit.sh`. Puis, avec `gh` :
+Lance `node "${CLAUDE_PLUGIN_ROOT}/scripts/git-audit.js"`. Puis, avec `gh` :
 
 - vérifie qu'un repo GitHub distant existe (`gh repo view`) ;
 - s'il n'existe pas et que je le souhaite, propose de le créer (`gh repo create`) et de pousser proprement ;
@@ -42,7 +42,7 @@ Ne pousse jamais et ne crée jamais de repo sans mon accord explicite.
 
 ## Étape 4 — Rapport d'écarts
 
-Compare l'état réel aux **règles d'or** (`~/dev/claude-setup/docs/regles-dor.md`) et au profil. Présente un rapport en deux colonnes :
+Compare l'état réel aux **règles d'or** (`${CLAUDE_PLUGIN_ROOT}/docs/regles-dor.md`) et au profil. Présente un rapport en deux colonnes :
 
 - **Additif (sûr, à appliquer)** : fichiers manquants (.editorconfig, .gitignore, lefthook.yml, configs de lint des langages détectés), hooks, CI.
 - **Structurel (à valider)** : réorganisations proposées, avec le diff. Je valide au cas par cas.
@@ -51,7 +51,7 @@ Compare l'état réel aux **règles d'or** (`~/dev/claude-setup/docs/regles-dor.
 
 Sur une branche `chore/claude-setup` :
 
-- applique les correctifs additifs en copiant depuis `~/dev/claude-setup/templates/` (n'y prends que ce qui correspond aux langages détectés), puis installe les hooks (`lefthook install`) ;
+- applique les correctifs additifs en copiant depuis `${CLAUDE_PLUGIN_ROOT}/templates/` (n'y prends que ce qui correspond aux langages détectés), puis installe les hooks (`lefthook install`) ;
 - applique uniquement les changements structurels que j'ai validés ;
 - ne configure que les outils des langages réellement présents.
 
@@ -61,6 +61,6 @@ Avec `gh`, pose une base saine si elle manque : labels cohérents, un milestone 
 
 ## Étape 7 — Mémoriser
 
-Écris ou actualise `.standards.yml` à la racine du projet, au format de `~/dev/claude-setup/templates/standards.example.yml` : profil retenu, version du socle (`~/dev/claude-setup/VERSION`), date, langages, règles appliquées, exceptions que j'ai acceptées. C'est ce qui rend les passages suivants idempotents.
+Écris ou actualise `.standards.yml` à la racine du projet, au format de `${CLAUDE_PLUGIN_ROOT}/templates/standards.example.yml` : profil retenu, version du socle (`${CLAUDE_PLUGIN_ROOT}/VERSION`), date, langages, règles appliquées, exceptions que j'ai acceptées. C'est ce qui rend les passages suivants idempotents.
 
 Termine par un récapitulatif : ce qui a été fait, ce qui reste à valider, et la commande exacte pour pousser.
