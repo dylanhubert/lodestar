@@ -5,6 +5,12 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="$HOME/.claude"
+CANONICAL="$HOME/dev/dev-standards"
+
+if [ "$REPO" != "$CANONICAL" ]; then
+  echo "! Ce repo est à $REPO, pas à $CANONICAL."
+  echo "  Les commandes référencent le chemin canonique. Clone-le à $CANONICAL pour éviter des liens cassés."
+fi
 
 mkdir -p "$CLAUDE_DIR/commands"
 
@@ -22,6 +28,28 @@ if [ -e "$CLAUDE_DIR/CLAUDE.md" ] && [ ! -L "$CLAUDE_DIR/CLAUDE.md" ]; then
 else
   ln -sf "$REPO/claude/CLAUDE.md" "$CLAUDE_DIR/CLAUDE.md"
   echo "✓ règles globales installées : ~/.claude/CLAUDE.md"
+fi
+
+# Réglage Git : pas de signature IA dans les commits. Réappliqué sur chaque machine.
+if command -v python3 >/dev/null; then
+  python3 - "$CLAUDE_DIR/settings.json" <<'PY'
+import json, os, sys
+p = sys.argv[1]
+data = {}
+if os.path.exists(p):
+    try:
+        data = json.load(open(p))
+    except Exception:
+        data = {}
+if data.get("includeCoAuthoredBy") is not False:
+    data["includeCoAuthoredBy"] = False
+    with open(p, "w") as f:
+        json.dump(data, f, indent=2)
+        f.write("\n")
+    print("✓ settings.json : includeCoAuthoredBy = false")
+else:
+    print("✓ settings.json : déjà sans signature IA")
+PY
 fi
 
 # Dépendances.

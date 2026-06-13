@@ -36,6 +36,19 @@ Dans n'importe quel projet :
 
 - `/brancher` — audite et met aux normes : structure, qualité, Git, gestion de projet GitHub.
 - `/check` — diagnostique une dérive, sans rien modifier.
+- `/revue` — comprend le code en profondeur, puis review, corrige, optimise, restructure.
+- `/sans-ia` — retire les marques d'IA (commits, fichiers, contenu) d'un projet existant.
+
+## Nouvelle machine
+
+Le repo poussé sur GitHub est la sauvegarde. Sur une machine neuve, tout se rejoue :
+
+```sh
+git clone <url-github> ~/dev/dev-standards
+~/dev/dev-standards/install.sh
+```
+
+`install.sh` recrée les symlinks et réapplique le réglage Git anti-signature. Rien n'est perdu d'une machine à l'autre. Garde le clone à `~/dev/dev-standards` (chemin référencé par les commandes).
 
 ## Structure
 
