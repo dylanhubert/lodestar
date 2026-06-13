@@ -24,11 +24,22 @@ L'outil sait quoi vérifier mécaniquement et quoi confier au raisonnement. C'es
 
 ## Installer
 
+Clone le socle dans `~/dev/claude-setup` (chemin référencé par les commandes), puis :
+
 ```sh
+cp config.example.sh config.local.sh   # renseigne ton nom et ton email git
 ./install.sh
 ```
 
-Installe les commandes, les agents et les règles globales dans `~/.claude` (la liste exacte des commandes s'affiche à la fin de l'install). Dépendances : `gh` (GitHub), `lefthook` (hooks Git), `gitleaks` (scan de secrets, optionnel).
+Installe les commandes, les agents et les règles globales dans `~/.claude` (la liste exacte s'affiche à la fin). `config.local.sh` (ignoré par Git) garde ton identité, pour que tes commits soient toujours à ton nom. Dépendances, toutes optionnelles : `gh` (GitHub), `lefthook` (hooks Git), `gitleaks` (scan de secrets) — l'install réussit sans elles, elles ne servent qu'à certaines commandes.
+
+## Démarrage rapide
+
+Dans n'importe quel projet, après avoir rechargé Claude Code :
+
+1. `/aide` — la liste des commandes et où ça marche.
+2. `/check` — l'état du projet (lecture seule).
+3. `/brancher` — le met aux normes.
 
 ## Utiliser
 
@@ -49,10 +60,30 @@ Le repo poussé sur GitHub est la sauvegarde. Sur une machine neuve, tout se rej
 
 ```sh
 git clone <url-github> ~/dev/claude-setup
-~/dev/claude-setup/install.sh
+cd ~/dev/claude-setup && cp config.example.sh config.local.sh   # renseigne ton identité
+./install.sh
 ```
 
-`install.sh` recrée les symlinks et réapplique le réglage Claude Code anti-signature (`includeCoAuthoredBy`). Rien n'est perdu d'une machine à l'autre. Garde le clone à `~/dev/claude-setup` (chemin référencé par les commandes).
+`install.sh` recrée les symlinks et applique ton identité git. Rien n'est perdu d'une machine à l'autre, sauf `config.local.sh` (local par nature — recrée-le depuis l'exemple). Garde le clone à `~/dev/claude-setup` (chemin référencé par les commandes).
+
+## Mettre à jour
+
+Quand le socle évolue, sur une machine déjà installée :
+
+```sh
+~/dev/claude-setup/update.sh
+```
+
+Il récupère la dernière version (`git pull --ff-only`) puis relance l'install.
+
+## L'utiliser (toi, ou quelqu'un d'autre)
+
+Le socle est sous licence MIT, donc réutilisable. Pour l'adapter :
+
+- **Identité** : `config.local.sh` (ton nom, ton email git), jamais committé.
+- **Chemin** : clone-le dans `~/dev/claude-setup` — les commandes y font référence en absolu. C'est le seul chemin imposé.
+- **Conventions** : `docs/` et `claude/CLAUDE.md` portent les règles ; édite-les pour les tiennes.
+- La langue est le français et les standards reflètent une façon de travailler : un fork est fait pour être personnalisé.
 
 ## Structure
 
@@ -62,3 +93,4 @@ git clone <url-github> ~/dev/claude-setup
 - `scripts/` — détection des langages, audit Git, scan des marques d'IA.
 - `claude/` — commandes, agents et règles globales Claude Code.
 - `CHANGELOG.md`, `VERSION` — l'historique et la version du socle, inscrite dans le `.standards.yml` de chaque projet branché.
+- `install.sh`, `update.sh`, `config.example.sh` — installer, mettre à jour, configurer.

@@ -2,6 +2,24 @@
 
 Les évolutions notables du socle. Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/), versionnage [semver](https://semver.org/lang/fr/).
 
+## [1.2.0] — 2026-06-14
+
+### Ajouts
+
+- `update.sh` : met à jour le socle sur une machine déjà installée (`git pull --ff-only` puis réinstall).
+- Démarrage rapide et section de personnalisation dans le README.
+- `/aide` indique par où commencer et distingue `/check` (conformité) de `/revue` (code).
+
+### Changements
+
+- Identité git sortie dans `config.local.sh` (ignoré par Git) au lieu d'être codée en dur : le socle est réutilisable par d'autres, chacun avec sa propre identité.
+- Licence MIT (au lieu de propriétaire).
+
+### Corrections
+
+- `docs/ou-ca-marche.md` listait 3 agents au lieu de 4 (ajout de `release-manager`).
+- `templates/standards.example.yml` affichait une version périmée.
+
 ## [1.1.0] — 2026-06-14
 
 ### Ajouts

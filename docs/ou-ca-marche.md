@@ -7,7 +7,7 @@ Tu mélanges les deux, c'est normal : ce sont deux applications différentes.
 Le terminal, l'app Code, l'extension VS Code / JetBrains, claude.ai/code. Ça tourne **dans un dossier de projet**. C'est là que marchent :
 
 - tes commandes : `/brancher`, `/check`, `/revue`, `/sans-ia`, `/mcp`, `/aide` ;
-- tes agents : `code-reviewer`, `security-auditor`, `test-writer` ;
+- tes agents : `code-reviewer`, `security-auditor`, `test-writer`, `release-manager` ;
 - le `.mcp.json` par projet et le `CLAUDE.md`.
 
 Pour bosser sur un projet, c'est ici.

@@ -1,4 +1,4 @@
-# Instructions globales — Dylan HUBERT
+# Instructions globales
 
 Ces règles s'appliquent à tous mes projets, quel que soit le langage.
 

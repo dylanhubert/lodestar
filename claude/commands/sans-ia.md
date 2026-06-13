@@ -33,7 +33,7 @@ C'est l'étape qui réécrit le passé. Explique-moi clairement AVANT d'agir :
 Demande-moi si le repo est partagé. Si je confirme :
 
 - fais d'abord une sauvegarde : `git branch backup-avant-nettoyage`.
-- privilégie `git filter-repo` (`brew install git-filter-repo`) pour retirer les trailers `Co-authored-by: Claude` et réécrire l'auteur/committer Anthropic vers `Dylan HUBERT <contact@dylan-hubert.fr>` (via `--mailmap` ou `--commit-callback`) ;
+- privilégie `git filter-repo` (`brew install git-filter-repo`) pour retirer les trailers `Co-authored-by: Claude` et réécrire l'auteur/committer Anthropic vers ton identité git (`git config user.name` / `git config user.email`), via `--mailmap` ou `--commit-callback` ;
 - à défaut, propose un rebase interactif pour les commits récents seulement.
 - termine en me donnant la commande exacte de force-push à lancer.
 

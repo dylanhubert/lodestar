@@ -7,6 +7,11 @@ REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="$HOME/.claude"
 CANONICAL="$HOME/dev/claude-setup"
 
+# Config locale (identité, etc.) si présente.
+SETUP_GIT_NAME=""
+SETUP_GIT_EMAIL=""
+[ -f "$REPO/config.local.sh" ] && . "$REPO/config.local.sh"
+
 if [ "$REPO" != "$CANONICAL" ]; then
   echo "! Ce repo est à $REPO, pas à $CANONICAL."
   echo "  Les commandes référencent le chemin canonique. Clone-le à $CANONICAL pour éviter des liens cassés."
@@ -83,17 +88,19 @@ else
   echo "  sinon les commits peuvent porter une signature IA."
 fi
 
-# Identité git : les commits doivent toujours être à mon nom, quel que soit l'environnement.
-want_name="Dylan HUBERT"
-want_email="contact@dylan-hubert.fr"
-cur_name="$(git config --global user.name || true)"
-cur_email="$(git config --global user.email || true)"
-if [ "$cur_name" != "$want_name" ] || [ "$cur_email" != "$want_email" ]; then
-  git config --global user.name "$want_name"
-  git config --global user.email "$want_email"
-  echo "✓ identité git imposée : $want_name <$want_email> (était : ${cur_name:-vide} <${cur_email:-vide}>)"
+# Identité git : pour que tes commits soient toujours à ton nom (réglée dans config.local.sh).
+if [ -n "$SETUP_GIT_NAME" ] && [ -n "$SETUP_GIT_EMAIL" ]; then
+  cur_name="$(git config --global user.name || true)"
+  cur_email="$(git config --global user.email || true)"
+  if [ "$cur_name" != "$SETUP_GIT_NAME" ] || [ "$cur_email" != "$SETUP_GIT_EMAIL" ]; then
+    git config --global user.name "$SETUP_GIT_NAME"
+    git config --global user.email "$SETUP_GIT_EMAIL"
+    echo "✓ identité git imposée : $SETUP_GIT_NAME <$SETUP_GIT_EMAIL> (était : ${cur_name:-vide} <${cur_email:-vide}>)"
+  else
+    echo "✓ identité git : $SETUP_GIT_NAME <$SETUP_GIT_EMAIL>"
+  fi
 else
-  echo "✓ identité git : $want_name <$want_email>"
+  echo "· identité git non imposée — renseigne config.local.sh (copie de config.example.sh) pour l'activer."
 fi
 
 # Dépendances
@@ -103,4 +110,4 @@ command -v gitleaks >/dev/null || echo "! gitleaks absent (brew install gitleaks
 
 echo
 echo "Terminé. Commandes :${commands}."
-echo "Recharge Claude Code pour les voir, ainsi que les agents."
+echo "Recharge Claude Code, puis tape /aide dans un projet pour démarrer."
