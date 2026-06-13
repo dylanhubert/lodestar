@@ -8,7 +8,7 @@ Tu branches un serveur MCP sur le projet courant, en portée **projet**, en gard
 
 ## 1. Cibler le service
 
-Service demandé : $ARGUMENTS. Si vide, demande-moi lequel (Supabase ou autre). Prends le modèle dans `~/dev/claude-setup/templates/mcp/` s'il existe.
+Service demandé : $ARGUMENTS. Si vide, demande-moi lequel — ça dépend du projet, ce n'est pas forcément Supabase. Consulte `~/dev/claude-setup/templates/mcp/catalog.md` : si un modèle prêt existe (ex. `supabase.mcp.json`), pars de lui ; sinon construis l'entrée avec le bon patron (HTTP ou stdio, voir `_http.example.mcp.json` / `_stdio.example.mcp.json`), en vérifiant le nom de package, l'URL et les options sur le repo ou la doc **officielle** du serveur (ça bouge vite).
 
 ## 2. Écrire le `.mcp.json` (committé, SANS secret)
 

@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "mon-service": {
+      "command": "npx",
+      "args": ["-y", "@vendor/mcp-server@latest", "--une-option"],
+      "env": {
+        "MON_SERVICE_TOKEN": "${MON_SERVICE_TOKEN}"
+      }
+    }
+  }
+}

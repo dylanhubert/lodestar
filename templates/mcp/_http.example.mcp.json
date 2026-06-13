@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "mon-service": {
+      "type": "http",
+      "url": "https://exemple.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${MON_SERVICE_TOKEN}"
+      }
+    }
+  }
+}

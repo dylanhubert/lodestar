@@ -53,6 +53,15 @@ Le `.mcp.json` est **committé**, donc il ne contient **jamais** le token en cla
 
 Claude Code lit l'environnement (settings.local.json + shell), puis remplace les `${...}` dans `.mcp.json` au lancement du serveur. Filet bulletproof si l'expansion ne prend pas : `export SUPABASE_ACCESS_TOKEN=… && claude`.
 
+## Pas que Supabase
+
+Le MCP marche pour n'importe quel service, et ça dépend du projet. Deux patrons :
+
+- **HTTP** (service hébergé) : `type: http`, `url`, et l'auth dans `headers` (`Authorization: Bearer ${TOKEN}`).
+- **stdio** (process local lancé via `npx` ou un binaire) : `command`, `args`, et les secrets dans `env` (`"CLE": "${CLE}"`).
+
+Plusieurs serveurs cohabitent dans le même `.mcp.json` sous `mcpServers`. La liste des serveurs courants et leurs patrons : `templates/mcp/catalog.md`. Le secret va toujours en `${VAR}` + `.claude/settings.local.json`, quel que soit le serveur.
+
 ## Mise en place
 
 `/mcp` fait tout : il écrit le `.mcp.json`, prépare `.claude/settings.local.json` avec les bonnes clés, et s'assure qu'il est bien ignoré par Git. Tu n'as qu'à coller ton token.
