@@ -1,0 +1,23 @@
+# Hooks Git agnostiques au langage. Chaque commande ne tourne que si son outil
+# est présent : un projet sans Python ne déclenche rien côté Python.
+# Pour activer dans un projet : lefthook install
+pre-commit:
+  parallel: true
+  commands:
+    format-js:
+      glob: "*.{js,ts,jsx,tsx,json}"
+      run: 'if command -v biome >/dev/null; then biome check --write {staged_files}; fi'
+    lint-python:
+      glob: "*.py"
+      run: 'if command -v ruff >/dev/null; then ruff check {staged_files}; fi'
+    lint-go:
+      glob: "*.go"
+      run: 'if command -v golangci-lint >/dev/null; then golangci-lint run; fi'
+    secrets:
+      glob: "*"
+      run: 'if command -v gitleaks >/dev/null; then gitleaks protect --staged --no-banner; fi'
+
+commit-msg:
+  commands:
+    conventional:
+      run: 'if command -v commitlint >/dev/null; then commitlint --edit {1}; fi'
