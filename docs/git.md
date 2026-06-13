@@ -4,7 +4,7 @@
 
 - `main` : toujours déployable.
 - `feat/<sujet>`, `fix/<sujet>`, `chore/<sujet>` pour le travail en cours.
-- `chore/dev-standards` : réservée aux mises aux normes par `/brancher`.
+- `chore/claude-setup` : réservée aux mises aux normes par `/brancher`.
 
 ## Commits
 

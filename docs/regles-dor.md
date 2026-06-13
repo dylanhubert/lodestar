@@ -11,4 +11,4 @@ Les invariants. Ils s'appliquent à **tous** les projets, quel que soit le langa
 7. **Formatage et lint automatiques** via les hooks (lefthook), avec les outils du langage détecté.
 8. **Les décisions d'archi sont tracées** en ADR (`docs/adr/`).
 9. **Voix humaine partout** (voir `voix.md`).
-10. **Chaque projet déclare son profil** dans `.dev-standards.yml`.
+10. **Chaque projet déclare son profil** dans `.standards.yml`.

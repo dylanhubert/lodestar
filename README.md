@@ -1,4 +1,4 @@
-# dev-standards
+# Claude Setup
 
 Mon socle commun pour tous mes projets, quel que soit le langage. Il garantit la cohérence sur ce qui doit l'être (qualité, Git, conventions, voix) sans imposer une structure unique aux projets, qui restent libres sur leur archi métier.
 
@@ -44,11 +44,11 @@ Dans n'importe quel projet :
 Le repo poussé sur GitHub est la sauvegarde. Sur une machine neuve, tout se rejoue :
 
 ```sh
-git clone <url-github> ~/dev/dev-standards
-~/dev/dev-standards/install.sh
+git clone <url-github> ~/dev/claude-setup
+~/dev/claude-setup/install.sh
 ```
 
-`install.sh` recrée les symlinks et réapplique le réglage Git anti-signature. Rien n'est perdu d'une machine à l'autre. Garde le clone à `~/dev/dev-standards` (chemin référencé par les commandes).
+`install.sh` recrée les symlinks et réapplique le réglage Git anti-signature. Rien n'est perdu d'une machine à l'autre. Garde le clone à `~/dev/claude-setup` (chemin référencé par les commandes).
 
 ## Structure
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Installe les commandes et les règles globales de dev-standards dans ~/.claude.
+# Installe les commandes et les règles globales de claude-setup dans ~/.claude.
 # Idempotent : relançable sans risque.
 set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CLAUDE_DIR="$HOME/.claude"
-CANONICAL="$HOME/dev/dev-standards"
+CANONICAL="$HOME/dev/claude-setup"
 
 if [ "$REPO" != "$CANONICAL" ]; then
   echo "! Ce repo est à $REPO, pas à $CANONICAL."
