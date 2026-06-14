@@ -13,7 +13,7 @@ Trois niveaux de règles : universel (`docs/regles-dor.md`), par langage (config
 
 ## Installer
 
-Dans Claude Code (terminal, IDE, ou les modes Code/Cowork de Claude Desktop), sur Windows ou Mac :
+### Avec Claude Code (CLI ou extension IDE)
 
 ```
 /plugin marketplace add dylanhubert/lodestar
@@ -21,9 +21,18 @@ Dans Claude Code (terminal, IDE, ou les modes Code/Cowork de Claude Desktop), su
 /setup
 ```
 
-`/setup` est interactif : il détecte ton OS, vérifie tes outils (git, gh, node…), règle ton identité git et configure le reste. Aucun chemin à choisir, aucun script à lancer à la main.
+### Avec Claude Desktop (Chat / Cowork / Code)
 
-> Les commandes et agents tournent dans **Claude Code** (terminal, IDE, et les modes **Code / Cowork** de Claude Desktop). Le mode **Chat** pur de Desktop ne fait pas tourner de plugins.
+L'app Desktop n'a pas la commande `/plugin`. On installe les commandes là où elle les lit (`~/.claude`), en une fois, depuis un terminal — Windows ou Mac, il faut juste **Git** et **Node** :
+
+```sh
+git clone https://github.com/dylanhubert/lodestar ~/dev/lodestar
+node ~/dev/lodestar/install.js
+```
+
+Redémarre Claude, puis lance `/setup`.
+
+`/setup` est interactif : il détecte ton OS, vérifie tes outils (git, gh, node…), règle ton identité git et configure le reste.
 
 ## Utiliser
 
@@ -41,9 +50,8 @@ Et des agents spécialisés, que `/revue` mobilise ou que tu invoques directemen
 
 ## Mettre à jour
 
-```
-/plugin marketplace update lodestar
-```
+- Claude Code (plugin) : `/plugin marketplace update lodestar`
+- Claude Desktop : `cd ~/dev/lodestar && git pull && node install.js`
 
 ## Sous le capot
 
