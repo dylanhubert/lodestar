@@ -16,7 +16,7 @@ Trois niveaux de règles : universel (`docs/regles-dor.md`), par langage (config
 Dans Claude Code (terminal, IDE, ou les modes Code/Cowork de Claude Desktop), sur Windows ou Mac :
 
 ```
-/plugin marketplace add dylanhubert/claude-setup
+/plugin marketplace add dylanhubert/lodestar
 /plugin install lodestar@lodestar
 /setup
 ```
