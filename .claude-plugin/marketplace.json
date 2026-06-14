@@ -1,5 +1,8 @@
 {
   "name": "lodestar",
+  "metadata": {
+    "description": "Le socle de Dylan HUBERT pour garder tous ses projets cohérents : qualité, Git, conventions, voix humaine."
+  },
   "owner": {
     "name": "Dylan HUBERT",
     "email": "contact@dylan-hubert.fr"

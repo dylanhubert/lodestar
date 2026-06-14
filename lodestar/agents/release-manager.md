@@ -1,6 +1,6 @@
 ---
 name: release-manager
-description: Spécialiste des releases. À utiliser de façon proactive au moment de publier une version : il lit les commits depuis le dernier tag, propose le bump semver, et rédige le CHANGELOG et les notes de release en voix humaine.
+description: Spécialiste des releases. À utiliser de façon proactive au moment de publier une version. Il lit les commits depuis le dernier tag, propose le bump semver, et rédige le CHANGELOG et les notes de release en voix humaine.
 tools: Read, Grep, Glob, Bash, Write, Edit
 ---
 
