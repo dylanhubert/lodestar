@@ -20,7 +20,7 @@ Refonte en **plugin Claude Code** (`lodestar`), installable par tout le monde, s
 
 ### Migration
 
-- On installe désormais via `/plugin marketplace add` + `/plugin install lodestar@lodestar`, puis `/setup`.
+- On installe désormais via `/plugin marketplace add` + `/plugin install lodestar@dylanhubert`, puis `/setup`.
 
 ## [1.2.0] — 2026-06-14
 

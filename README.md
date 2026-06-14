@@ -17,7 +17,7 @@ Trois niveaux de règles : universel (`docs/regles-dor.md`), par langage (config
 
 ```
 /plugin marketplace add dylanhubert/lodestar
-/plugin install lodestar@lodestar
+/plugin install lodestar@dylanhubert
 /setup
 ```
 
@@ -50,7 +50,7 @@ Et des agents spécialisés, que `/revue` mobilise ou que tu invoques directemen
 
 ## Mettre à jour
 
-- Claude Code (plugin) : `/plugin marketplace update lodestar`
+- Claude Code (plugin) : `/plugin marketplace update dylanhubert`
 - Claude Desktop : `cd ~/dev/lodestar && git pull && node install.js`
 
 ## Sous le capot
